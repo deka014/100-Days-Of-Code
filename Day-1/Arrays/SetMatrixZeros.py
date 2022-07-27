@@ -33,7 +33,8 @@ class Solution:
                 
                 if rowArr[i] == 0 or colArr[j] == 0:
                     matrix[i][j] = 0
-            
+
+# Time complexity - o(n) because the traversal is done only once
                     
                     
                 
