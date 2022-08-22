@@ -28,6 +28,15 @@ class Solution:
         # or 
         # 2 pointer with left and right --> it will not create duplicate
         
+        class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        
+        
+        # this can be solved using three pointer with binary search which may create duplicates so set
+        # needs to be used 
+        # or 
+        # 2 pointer with left and right --> it will not create duplicate
+        
         def threePointerApproach():
             output = []
             i = 0
@@ -35,19 +44,10 @@ class Solution:
             nums.sort()
             
             while i < N :
-                if i> 0 and nums[i] == nums[i-1] : 
-                            i+=1
-                            continue
                 j = i+1
                 while j < N :
-                    if j > i+1 and nums[j] == nums[j-1] : 
-                            j+=1
-                            continue
                     k=j+1
                     while k < N :
-                        if k > j+1 and nums[k] == nums[k-1] : 
-                            k+=1
-                            continue
                         rem = target - (nums[i] + nums[j] + nums[k])
                         l = k+1
                         r = N-1
@@ -64,7 +64,7 @@ class Solution:
                         k+=1 
                     j+=1
                 i+=1 
-            return output
+            return list(set(map(tuple,output) ))
                   
                         
         
