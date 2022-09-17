@@ -46,8 +46,7 @@ class Solution:
                 maxDeadline = i.deadline
         
         jseq = [-1 for i in range(maxDeadline)]
-            
-        time = 1
+        
         total = 0
         count = 0
         for i in jlist:
