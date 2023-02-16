@@ -38,6 +38,11 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+
+#note Global sum is used because sometimes the sum of the tree is not the max sum of the tree that is passed on 
+
+
 class Solution:
     def maxSumBST(self, root) -> int:
         self.globalSum = 0
