@@ -29,16 +29,42 @@
 # Explanation: The smallest positive integer 1 is missing.
 
 
+# class Solution:
+#   def firstMissingPositive(self, nums):
+#     n = len(nums)
+    
+#     for i in range(n):
+#         while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:
+#             nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+    
+#     for i in range(n):
+#         if nums[i] != i + 1:
+#             return i + 1
+    
+#     return n + 1
+
+
 class Solution:
-  def firstMissingPositive(self, nums):
-    n = len(nums)
-    
-    for i in range(n):
-        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:
-            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
-    
-    for i in range(n):
-        if nums[i] != i + 1:
-            return i + 1
-    
-    return n + 1
+    def firstMissingPositive(self, nums) :
+        
+        for i in range(len(nums)):
+            if nums[i] < 0:
+                nums[i] = 0
+        
+        for i in range(len(nums)):
+            if 1 <= abs(nums[i]) <= len(nums) :
+
+                if nums[abs(nums[i]) - 1 ] > 0 :
+                    nums[abs(nums[i]) - 1] *= -1
+
+                elif nums[abs(nums[i]) - 1] == 0 :
+                    nums[abs(nums[i]) - 1 ] = -(len(nums) + 1)
+ 
+        
+        for i in range(len(nums)):
+            if nums[i] >= 0 :
+                return i+1
+        
+        return len(nums) + 1
+
+        
