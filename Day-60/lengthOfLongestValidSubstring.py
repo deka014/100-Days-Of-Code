@@ -51,7 +51,6 @@ class Solution:
             res = max(res, right - left + 1)
         return res
 
-
 class Solution:
     def longestValidSubstring(self, word: str, forbidden: List[str]) -> int:
         
@@ -61,10 +60,11 @@ class Solution:
         j = 0
         
         def checkforbidden(i,j):
-            while i <= j :        
-                if word[max(i,j-9):j+1] in forbidset:
+            left = max(i,j-9)
+            while left <= j :        
+                if word[left:j+1] in forbidset:
                     return True
-                i += 1
+                left += 1
             return False
         
         while j < len(word):
@@ -77,4 +77,3 @@ class Solution:
                 j+=1
         
         return ans
-
