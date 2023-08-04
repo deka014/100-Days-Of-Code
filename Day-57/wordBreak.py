@@ -67,3 +67,33 @@ class Solution:
         return recsol(0,0)
 
 
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool: 
+        wordDict = set(wordDict)
+        memo = [[None] * len(s) for i in range(len(s))]
+        def recsol(start,end):
+            if start == end == len(s) :
+                return True
+            
+            if end >= len(s) :
+                return False 
+            
+            boolfromfuture = False
+
+            if memo[start][end] != None :
+                return memo[start][end]
+            
+            if s[start:end+1] in wordDict:
+                boolfromfuture = recsol(end+1,end+1)
+                
+            memo[start][end] = boolfromfuture or recsol(start,end+1)
+
+            return memo[start][end]
+
+        
+        return recsol(0,0)
+
+
+
