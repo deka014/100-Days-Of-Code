@@ -67,8 +67,8 @@ class Solution:
                 if self.find(v1) == self.find(v2):
                     return False
                 
-                if p1 > p2 :
-                    self.parent[p2] == p1
+                if self.rank[p1] > self.rank[p2] :
+                    self.parent[p2] = p1
                     self.rank[p1] += self.rank[p2]
                 else :
                     self.parent[p1] = p2
@@ -117,3 +117,4 @@ class Solution:
 
         
         return [c,ps]
+
