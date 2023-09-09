@@ -71,10 +71,6 @@ class Solution:
             dp[total] = temp
             return temp
 
-        rec(0)
-        print(dp)
-        return dp[0]
+        return rec(0)
+    
 
-
-
-        
