@@ -42,3 +42,20 @@
 # 54.7K
 # Acceptance Rate
 # 51.9%
+
+
+class Solution:
+    def maxConsecutive(self, bottom: int, top: int, special: List[int]) -> int:
+
+        special.sort()
+        ans = max(special[0] - bottom,0)
+
+        for i in range(len(special)):
+
+            if i == len(special) - 1 :
+                ans = max(top - special[i]  , ans)
+            
+            ans = max(special[i] - special[i-1] - 1, ans)
+
+        return ans
+            
