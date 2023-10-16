@@ -63,10 +63,3 @@ class Solution:
             ans.append(1)
 
         return ans
-
-
-
-
-
-
-        
