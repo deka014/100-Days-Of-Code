@@ -51,3 +51,71 @@
 #     1 <= time[i] <= 104
 #     The given graph is a directed acyclic graph.
 
+class Solution:
+    def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
+        
+        # 5 - 1 2 3 4
+        # 4 - 3
+
+        # returns 
+
+        # 1 - 1 m
+        # 2 - 2 m
+        # 3 - 3 m
+        # 4 - 4 + 3 m
+        #     3 - 3  
+        course = {}
+        withchild = set()
+
+        for prevcourse,nextcourse in relations :
+            if nextcourse in course :
+                course[nextcourse].append(prevcourse)
+            else :
+                course[nextcourse] = [prevcourse]
+            
+            withchild.add(prevcourse)
+        
+        maxtime = {}
+
+        # for key in course :
+        #     maxtime[key] = 0 
+        #     for i in course[key] :
+        #         maxtime[key] = max(time[i-1],maxtime[key])
+        
+
+        def rec(node):
+            
+            if not node in course :
+                return time[node-1]
+            
+            if node in maxtime :
+                return maxtime[node]
+
+            temp = 0
+
+            for neigh in course[node] :
+    
+                temp = max(temp,time[node-1] + rec(neigh))
+
+            maxtime[node] = temp
+            
+            return temp
+
+
+        ans = 0
+    
+        for node in range(1,n+1):
+            print(node)
+            if node in withchild :
+                continue
+            ans = max(rec(node) ,ans)
+
+        print(course,withchild)
+            
+        return ans
+
+
+
+
+
+
