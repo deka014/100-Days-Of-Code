@@ -32,3 +32,46 @@
 #     2 <= arr[i] <= 109
 #     All the values of arr are unique.
 
+class Solution:
+    def numFactoredBinaryTrees(self, arr: List[int]) -> int:
+        
+        # 12 - (6,2) - (4,3) - (3,4) - (2,6)
+        # 6 - (3,2) - (2,3)
+        # 4 - (2,2)
+        # 3 - x
+        # 2 - x
+
+            #         12 
+            #     6       2
+            # 3       2
+
+            #         12
+            #     4       3
+            # 2       2   
+
+        # 2 - 0
+        # 3 - 0 
+        # 4 - 1
+        # 6 - 2
+        # 12 - 
+
+        arr.sort()
+
+        nummap = {arr[0]:1}
+
+        
+        ans = 0
+
+        for i in range(1,len(arr)):
+            root = arr[i]
+            nummap[root] = 1 
+            for j in range(i):
+                if root % arr[j] == 0 and root // arr[j] in nummap :
+                    LC = arr[j]
+                    RC = root // arr[j]   
+                    nummap[root] += (nummap[LC] * nummap[RC])
+
+        for key in nummap :
+            ans+=nummap[key]
+
+        return ans % ((10**9) + 7)
