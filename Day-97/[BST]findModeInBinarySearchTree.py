@@ -45,3 +45,42 @@
 # 1/4
 # Yes
 # No
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        def rec(node, lastfound, maxfreq, currfreq, ans):
+            if node is None:
+                return lastfound, maxfreq, currfreq, ans
+
+            lastfound, maxfreq, currfreq, ans = rec(node.left, lastfound, maxfreq, currfreq, ans)
+
+            if node.val == lastfound:
+                currfreq += 1
+            else:
+                currfreq = 1
+                lastfound = node.val
+
+            if currfreq == maxfreq:
+                ans.append(node.val)
+            elif currfreq > maxfreq:
+                maxfreq = currfreq
+                ans = [node.val]
+
+            return rec(node.right, lastfound, maxfreq, currfreq, ans)
+
+        lastfound = None
+        maxfreq = 0
+        currfreq = 0
+        ans = []
+        
+        _, _, _, ans = rec(root, lastfound, maxfreq, currfreq, ans)
+        return ans
+
+        
