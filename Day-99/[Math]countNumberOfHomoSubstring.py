@@ -50,3 +50,45 @@
 # 143.1K
 # Acceptance Rate
 # 57.3%
+
+class Solution:
+    def countHomogenous(self, s: str) -> int:
+        
+        
+        # totallen - len + 1
+        # aaaaa
+         
+        # aaaa - 1
+
+        # a - 4
+        # aa - 3
+        # aaa - 2
+        # aaaa - 1
+
+        # abaaaa
+
+        # a - 
+
+        prev = s[0]
+        conlen = 1
+        ans = 0
+
+        for word in s[1:] :
+            
+            if word != prev :
+                while conlen > 0 :
+                    ans+=conlen
+                    conlen-=1
+                conlen = 1
+                prev = word
+            else :
+                conlen+=1
+        
+        while conlen > 0 :
+            ans+=conlen
+            conlen-=1 
+        
+        return ans % (10**9) + 7
+
+            
+
