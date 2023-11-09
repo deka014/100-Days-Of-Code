@@ -76,19 +76,21 @@ class Solution:
         for word in s[1:] :
             
             if word != prev :
-                while conlen > 0 :
-                    ans+=conlen
-                    conlen-=1
+                ans += (conlen*(conlen+1))/2
                 conlen = 1
                 prev = word
             else :
                 conlen+=1
         
-        while conlen > 0 :
-            ans+=conlen
-            conlen-=1 
+        ans += (conlen*(conlen+1))/2
         
-        return ans % (10**9) + 7
+        return int(ans % ((10**9) + 7))
+
+            
+
+
+
+
 
             
 
