@@ -67,8 +67,6 @@ class Solution:
         return ans
 
 
-        # 10
-
         # 1 2 3 4 total = 10
 
         # (x-x) + (x-y) + (x-z) + (x-w)
