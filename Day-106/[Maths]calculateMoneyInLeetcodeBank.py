@@ -64,6 +64,3 @@ class Solution:
         # n days 
 
         # n/7 = total weeks 
-
-
-
