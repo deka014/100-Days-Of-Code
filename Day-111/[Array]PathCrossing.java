@@ -29,7 +29,7 @@ class Solution {
                 x-=1;
             }
 
-            Pair<Integer,Integer> newPair = new Pair(x,y);
+            Pair<Integer,Integer> newPair = new Pair<>(x,y);
             if (visited.contains(newPair)){
                 return true;
             }
