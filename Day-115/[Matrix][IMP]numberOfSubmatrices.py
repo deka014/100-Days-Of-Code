@@ -44,3 +44,37 @@
 # 176.5K
 # Acceptance Rate
 # 73.4%
+
+class Solution:
+    def numSubmatrixSumTarget(self, matrix: List[List[int]], target: int) -> int:
+        
+        rows = len(matrix)
+        cols = len(matrix[0])
+
+        for i in range(rows):
+            for j in range(1,cols):
+                matrix[i][j] += matrix[i][j-1]
+
+        ans = 0
+
+        for startcol in range(0,cols):
+            for j in range(startcol,cols):
+
+                countmap = {0:1}
+
+                currsum= 0
+
+                for i in range(0,rows):
+                    top = matrix[i][startcol-1] if startcol > 0 else 0
+                    currsum+= matrix[i][j] - top
+
+                    if currsum - target in countmap :
+                        ans+= countmap[currsum-target]
+
+                    if currsum in countmap :
+                        countmap[currsum]+=1
+                    else :
+                        countmap[currsum] = 1 
+        
+        return ans
+
