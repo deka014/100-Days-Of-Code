@@ -50,25 +50,27 @@
 
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.ArrayDeque;
-import java.util.Queue;
-import javafx.util.Pair;
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
+// import javax.swing.tree.TreeNode;
+
+
+
+
+// // /**
+//  Definition for a binary tree node.
+ class TreeNode {
+     int val;
+     TreeNode left;
+     TreeNode right;
+     TreeNode() {}
+     TreeNode(int val) { this.val = val; }
+     TreeNode(int val, TreeNode left, TreeNode right) {
+         this.val = val;
+         this.left = left;
+         this.right = right;
+     }
+ }
+
 
 class Pair {
     private TreeNode key;
@@ -91,15 +93,15 @@ class Pair {
 
 class Solution {
     public boolean isEvenOddTree(TreeNode root) {
-        Queue<Pair<TreeNode,Integer>> q = new ArrayDeque<>(); //val,level
-        q.offer(new Pair<>(root,0));
+        Queue<Pair> q = new ArrayDeque<>(); //val,level
+        q.offer(new Pair(root,0));
         int currlevel = 0;
         int lastval = -1;
 
         
 
         while (!q.isEmpty()){
-            Pair<TreeNode,Integer> node = q.poll();
+            Pair node = q.poll();
             TreeNode currNode = node.getKey();
             int level = node.getValue();
 
@@ -133,11 +135,11 @@ class Solution {
             lastval = currNode.val;
 
             if (currNode.left != null){
-                q.offer(new Pair<>(currNode.left,level+1));
+                q.offer(new Pair(currNode.left,level+1));
             }
 
             if (currNode.right != null){
-                q.offer(new Pair<>(currNode.right,level+1));
+                q.offer(new Pair(currNode.right,level+1));
             }
 
 
