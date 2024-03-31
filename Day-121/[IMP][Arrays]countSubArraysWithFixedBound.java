@@ -37,3 +37,38 @@
 //     2 <= nums.length <= 105
 //     1 <= nums[i], minK, maxK <= 106
 
+class Solution {
+    public long countSubarrays(int[] nums, int minK, int maxK) {
+        int minKindex= -1;
+        int maxKindex = -1;
+        int badindex = -1;
+        long ans = 0;
+        int n = nums.length;
+
+        for(int i = 0; i < n ; i++){
+            
+            if (nums[i] > maxK || nums[i] < minK){
+                badindex = i;
+            }
+            if (nums[i] == minK){
+                minKindex = i;
+            }
+            if (nums[i] == maxK){
+                maxKindex = i;
+            }
+
+            int temp = Math.min(minKindex,maxKindex) - badindex;
+            if (temp<=0){
+                ans+=0;
+            }
+            else{
+                ans+=temp;
+            }
+
+        }
+
+        return ans;
+    }
+}
+
+
